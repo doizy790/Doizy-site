@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>DOIZY | Official</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --red: #ff003c;
+  --dark-red: #8b001f;
+  --black: #050505;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--black);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 45%,
+      rgba(255, 0, 60, 0.13),
+      transparent 48%),
+    linear-gradient(
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px
+    );
+  background-size: auto, 35px 35px, 35px 35px;
+  z-index: -2;
+}
+
+.particles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  bottom: -20px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 12px var(--red);
+  animation: rise linear infinite;
+  opacity: 0;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(.5);
+    opacity: 0;
+  }
+  15% { opacity: .8; }
+  85% { opacity: .5; }
+  100% {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+header {
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7%;
+  border-bottom: 1px solid rgba(255,0,60,.2);
+  background: rgba(5,5,5,.7);
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: white;
+  text-shadow: 0 0 15px var(--red);
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #aaa;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff003c;
+  box-shadow: 0 0 12px #ff003c;
+  animation: blink 1.4s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: .25; }
+}
+
+main {
+  min-height: calc(100vh - 145px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 65px 20px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--red);
+  font-size: 11px;
+  letter-spacing: 5px;
+  margin-bottom: 28px;
+  animation: appear 1s ease both;
+}
+
+h1 {
+  position: relative;
+  font-size: clamp(55px, 13vw, 125px);
+  font-weight: 900;
+  letter-spacing: clamp(5px, 2vw, 17px);
+  line-height: 1.15;
+  color: #fff;
+  text-shadow:
+    0 0 8px rgba(255,0,60,.9),
+    0 0 25px rgba(255,0,60,.65),
+    0 0 65px rgba(255,0,60,.35);
+  animation: glow 3s ease-in-out infinite alternate,
+             appear 1.2s ease both;
+}
+
+@keyframes glow {
+  from {
+    text-shadow:
+      0 0 8px rgba(255,0,60,.6),
+      0 0 25px rgba(255,0,60,.3);
+  }
+  to {
+    text-shadow:
+      0 0 12px #ff003c,
+      0 0 35px #ff003c,
+      0 0 85px rgba(255,0,60,.55);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.line {
+  width: min(280px, 70%);
+  height: 2px;
+  margin: 28px 0;
+  background: linear-gradient(90deg,
+    transparent, var(--red), transparent);
+  box-shadow: 0 0 15px var(--red);
+}
+
+.description {
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 3px;
+  line-height: 2;
+  animation: appear 1.5s ease both;
+}
+
+.description strong {
+  color: white;
+}
+
+.button {
+  position: relative;
+  margin-top: 38px;
+  padding: 16px 34px;
+  border: 1px solid var(--red);
+  border-radius: 3px;
+  background: transparent;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255,0,60,.12);
+  transition: .3s;
+}
+
+.button:hover,
+.button:active {
+  background: var(--red);
+  box-shadow: 0 0 30px rgba(255,0,60,.6);
+  transform: translateY(-3px);
+}
+
+.counter {
+  display: flex;
+  gap: 40px;
+  margin-top: 65px;
+}
+
+.counter div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.counter strong {
+  font-size: 17px;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.counter span {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #777;
+}
+
+footer {
+  min-height: 60px;
+  padding: 20px;
+  border-top: 1px solid rgba(255,0,60,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+footer span {
+  color: var(--red);
+}
+
+#message {
+  margin-top: 22px;
+  color: var(--red);
+  font-size: 12px;
+  letter-spacing: 2px;
+  min-height: 16px;
+}
+
+@media (max-width: 480px) {
+  header {
+    height: 70px;
+    padding: 0 6%;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .status {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  main {
+    padding: 55px 15px;
+  }
+
+  .counter {
+    gap: 24px;
+  }
+
+  .description {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="particles" id="particles"></div>
+
+<header>
+  <div class="logo">DOI<span>ZY</span></div>
+  <div class="status">
+    <span class="dot"></span>
+    SYSTEM ONLINE
+  </div>
+</header>
+
+<main>
+  <div class="eyebrow">WELCOME TO MY WORLD</div>
+
+  <h1>DOIZY</h1>
+
+  <div class="line"></div>
+
+  <p class="description">
+    NOT JUST A NAME.<br>
+    <strong>IT'S A SIGNATURE.</strong>
+  </p>
+
+  <button class="button" id="enterButton">
+    <span id="buttonText">✦ &nbsp; ENTER THE VOID &nbsp; ✦</span>
+  </button>
+
+  <div id="message"></div>
+
+  <div class="counter">
+    <div>
+      <strong>01</strong>
+      <span>IDENTITY</span>
+    </div>
+    <div>
+      <strong>∞</strong>
+      <span>POTENTIAL</span>
+    </div>
+    <div>
+      <strong>001</strong>
+      <span>ORIGINAL</span>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>©</span> 2026 DOIZY
+  <span>•</span> ALL RIGHTS RESERVED
+</footer>
+
+<script>
+const particles = document.getElementById("particles");
+
+for (let i = 0; i < 45; i++) {
+  const p = document.createElement("span");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "%";
+  p.style.animationDuration = (5 + Math.random() * 10) + "s";
+  p.style.animationDelay = (Math.random() * 10) + "s";
+  p.style.transform = "scale(" + (0.5 + Math.random()) + ")";
+  particles.appendChild(p);
+}
+
+const button = document.getElementById("enterButton");
+const message = document.getElementById("message");
+
+button.addEventListener("click", () => {
+  message.textContent = "DOIZY — YOU ARE IN THE RIGHT PLACE.";
+  button.style.background = "#ff003c";
+  setTimeout(() => {
+    button.style.background = "transparent";
+  }, 350);
+});
+</script>
+
+</body>
+</html>
