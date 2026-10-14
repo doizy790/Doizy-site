@@ -3,390 +3,146 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-<title>DOIZY | Official</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>DOIZY | Siber Terminal</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --red: #ff003c;
-  --dark-red: #8b001f;
-  --black: #050505;
-}
-
-body {
-  min-height: 100vh;
-  overflow-x: hidden;
-  background: var(--black);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 50% 45%,
-      rgba(255, 0, 60, 0.13),
-      transparent 48%),
-    linear-gradient(
-      rgba(255,255,255,0.018) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,0.018) 1px,
-      transparent 1px
-    );
-  background-size: auto, 35px 35px, 35px 35px;
-  z-index: -2;
-}
-
-.particles {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.particle {
-  position: absolute;
-  bottom: -20px;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--red);
-  box-shadow: 0 0 12px var(--red);
-  animation: rise linear infinite;
-  opacity: 0;
-}
-
-@keyframes rise {
-  0% {
-    transform: translateY(0) scale(.5);
-    opacity: 0;
-  }
-  15% { opacity: .8; }
-  85% { opacity: .5; }
-  100% {
-    transform: translateY(-110vh) scale(1.5);
-    opacity: 0;
-  }
-}
-
-header {
-  height: 85px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 7%;
-  border-bottom: 1px solid rgba(255,0,60,.2);
-  background: rgba(5,5,5,.7);
-  backdrop-filter: blur(12px);
-}
-
-.logo {
-  font-size: 25px;
-  font-weight: 900;
-  letter-spacing: 4px;
-  color: white;
-  text-shadow: 0 0 15px var(--red);
-}
-
-.logo span {
-  color: var(--red);
-}
-
-.status {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: #aaa;
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #ff003c;
-  box-shadow: 0 0 12px #ff003c;
-  animation: blink 1.4s infinite;
-}
-
-@keyframes blink {
-  50% { opacity: .25; }
-}
-
-main {
-  min-height: calc(100vh - 145px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 65px 20px;
-  text-align: center;
-}
-
-.eyebrow {
-  color: var(--red);
-  font-size: 11px;
-  letter-spacing: 5px;
-  margin-bottom: 28px;
-  animation: appear 1s ease both;
-}
-
-h1 {
-  position: relative;
-  font-size: clamp(55px, 13vw, 125px);
-  font-weight: 900;
-  letter-spacing: clamp(5px, 2vw, 17px);
-  line-height: 1.15;
-  color: #fff;
-  text-shadow:
-    0 0 8px rgba(255,0,60,.9),
-    0 0 25px rgba(255,0,60,.65),
-    0 0 65px rgba(255,0,60,.35);
-  animation: glow 3s ease-in-out infinite alternate,
-             appear 1.2s ease both;
-}
-
-@keyframes glow {
-  from {
-    text-shadow:
-      0 0 8px rgba(255,0,60,.6),
-      0 0 25px rgba(255,0,60,.3);
-  }
-  to {
-    text-shadow:
-      0 0 12px #ff003c,
-      0 0 35px #ff003c,
-      0 0 85px rgba(255,0,60,.55);
-  }
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.line {
-  width: min(280px, 70%);
-  height: 2px;
-  margin: 28px 0;
-  background: linear-gradient(90deg,
-    transparent, var(--red), transparent);
-  box-shadow: 0 0 15px var(--red);
-}
-
-.description {
-  color: #aaa;
-  font-size: 14px;
-  letter-spacing: 3px;
-  line-height: 2;
-  animation: appear 1.5s ease both;
-}
-
-.description strong {
-  color: white;
-}
-
-.button {
-  position: relative;
-  margin-top: 38px;
-  padding: 16px 34px;
-  border: 1px solid var(--red);
-  border-radius: 3px;
-  background: transparent;
-  color: white;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(255,0,60,.12);
-  transition: .3s;
-}
-
-.button:hover,
-.button:active {
-  background: var(--red);
-  box-shadow: 0 0 30px rgba(255,0,60,.6);
-  transform: translateY(-3px);
-}
-
-.counter {
-  display: flex;
-  gap: 40px;
-  margin-top: 65px;
-}
-
-.counter div {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.counter strong {
-  font-size: 17px;
-  letter-spacing: 3px;
-  color: white;
-}
-
-.counter span {
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: #777;
-}
-
-footer {
-  min-height: 60px;
-  padding: 20px;
-  border-top: 1px solid rgba(255,0,60,.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: #666;
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-align: center;
-}
-
-footer span {
-  color: var(--red);
-}
-
-#message {
-  margin-top: 22px;
-  color: var(--red);
-  font-size: 12px;
-  letter-spacing: 2px;
-  min-height: 16px;
-}
-
-@media (max-width: 480px) {
-  header {
-    height: 70px;
-    padding: 0 6%;
-  }
-
-  .logo {
-    font-size: 21px;
-  }
-
-  .status {
-    font-size: 8px;
-    letter-spacing: 1px;
-  }
-
-  main {
-    padding: 55px 15px;
-  }
-
-  .counter {
-    gap: 24px;
-  }
-
-  .description {
-    font-size: 11px;
-    letter-spacing: 2px;
-  }
+*{box-sizing:border-box}
+:root{--g:#00ff66;--dim:#087c43;--bg:#020503}
+body{margin:0;background:var(--bg);color:#b5ffd1;font-family:monospace}
+header{padding:14px;color:var(--g);border-bottom:1px solid var(--dim);display:flex;justify-content:space-between;gap:8px;font-size:12px}
+main{padding:12px;display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:12px}
+.panel{border:1px solid var(--dim);border-radius:5px;padding:12px;min-width:0;box-shadow:0 0 12px #00ff6610}
+h3{margin:0 0 12px;color:var(--g);font-size:14px;border-bottom:1px solid var(--dim);padding-bottom:8px}
+p{font-size:12px;line-height:1.7;overflow-wrap:anywhere;margin:6px 0}
+.green{color:var(--g)}
+.red{color:#ff4265}
+.center{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.logo{font-size:clamp(45px,9vw,100px);font-weight:bold;letter-spacing:5px;color:var(--g);text-shadow:0 0 12px var(--g),0 0 35px #00ff6688;animation:pulse 2s infinite alternate}
+@keyframes pulse{to{text-shadow:0 0 25px var(--g),0 0 60px #00ff6688}}
+.subtitle{letter-spacing:4px;color:var(--g);font-size:11px;margin:8px 0 20px}
+figure{margin:0;width:100%;max-width:310px;height:200px;position:relative;overflow:hidden}
+.matrix{position:absolute;inset:0;display:flex;justify-content:space-around;color:#00ff66;font-size:12px;opacity:.65;line-height:1.4;overflow:hidden}
+.matrix span{writing-mode:vertical-rl;animation:fall 4s linear infinite}
+.matrix span:nth-child(even){animation-delay:-2s}
+@keyframes fall{from{transform:translateY(-100%)}to{transform:translateY(100%)}}
+.hood{position:absolute;left:50%;top:20px;transform:translateX(-50%);width:135px;height:175px;background:linear-gradient(135deg,#063b20,#010302 65%);clip-path:polygon(50% 0,83% 18%,100% 48%,90% 100%,10% 100%,0 48%,17% 18%);border:1px solid var(--g);filter:drop-shadow(0 0 10px var(--g))}
+.face{position:absolute;left:50%;top:62px;transform:translateX(-50%);width:73px;height:85px;background:#010302;clip-path:polygon(50% 0,90% 22%,80% 100%,20% 100%,10% 22%);border-top:2px solid var(--g)}
+.bar{height:14px;border:1px solid var(--dim);margin:8px 0;overflow:hidden}
+.bar span{display:block;width:78%;height:100%;background:repeating-linear-gradient(90deg,var(--g) 0 7px,#064d27 7px 10px);animation:load 3s infinite alternate}
+@keyframes load{to{width:94%}}
+button{background:#00190a;color:var(--g);border:1px solid var(--g);padding:12px 15px;font-family:inherit;cursor:pointer;margin-top:12px}
+button:active{background:var(--g);color:#000}
+.logs{height:190px;overflow:auto}
+footer{margin:0 12px 15px;padding:12px;border:1px solid var(--dim);color:var(--g);text-align:center;font-size:12px}
+.small{font-size:11px;color:#70bd8d}
+@media(max-width:700px){
+ main{grid-template-columns:1fr}
+ .center{grid-row:1}
+ figure{height:155px}
+ .hood{height:145px;width:115px}
+ .face{top:53px}
+ .logs{height:130px}
+ .logo{font-size:64px}
 }
 </style>
 </head>
-
 <body>
-
-<div class="particles" id="particles"></div>
-
 <header>
-  <div class="logo">DOI<span>ZY</span></div>
-  <div class="status">
-    <span class="dot"></span>
-    SYSTEM ONLINE
-  </div>
+ <span>DOIZY@terminal:~$ ./doizy.py</span>
+ <span id="clock">SİSTEM HAZIR</span>
 </header>
 
 <main>
-  <div class="eyebrow">WELCOME TO MY WORLD</div>
+<section class="panel">
+ <h3>〈 SİSTEM BİLGİSİ 〉</h3>
+ <p>› İşletim Sistemi : Android</p>
+ <p>› Terminal : Termux</p>
+ <p>› Kullanıcı : <span class="green">doizy</span></p>
+ <p>› Durum : <span class="green">ÇEVRİM İÇİ</span></p>
+ <br>
+ <h3>〈 SİMÜLASYON 〉</h3>
+ <p>› Hedef : Demo ekranı</p>
+ <p>› Protokol : HTTPS</p>
+ <p>› Tarama : <span class="green">Gerçek değil</span></p>
+ <p class="small">Bu panel yalnızca görsel bir simülasyondur.</p>
+ <br>
+ <h3>〈 KAYITLAR 〉</h3>
+ <div class="logs" id="logs">
+ <p>[OK] Arayüz başlatıldı</p>
+ <p>[OK] Görsel efektler yüklendi</p>
+ <p>[OK] DOIZY terminali hazır</p>
+ </div>
+</section>
 
-  <h1>DOIZY</h1>
+<section class="panel center">
+ <div class="logo">DOIZY</div>
+ <div class="subtitle">— SİSTEME HOŞ GELDİN —</div>
+ <figure>
+  <div class="matrix" id="matrix"></div>
+  <div class="hood"></div><div class="face"></div>
+ </figure>
+ <p class="green">GÖRÜNÜM HAZIR</p>
+ <div class="bar"><span></span></div>
+ <p id="progress" class="green">Görsel efektler çalışıyor...</p>
+ <p class="small">KÜÇÜK ADIMLAR · BÜYÜK HAYALLER</p>
+ <button id="scan">✦ SİSTEMİ BAŞLAT ✦</button>
+ <p id="result" class="green"></p>
+</section>
 
-  <div class="line"></div>
-
-  <p class="description">
-    NOT JUST A NAME.<br>
-    <strong>IT'S A SIGNATURE.</strong>
-  </p>
-
-  <button class="button" id="enterButton">
-    <span id="buttonText">✦ &nbsp; ENTER THE VOID &nbsp; ✦</span>
-  </button>
-
-  <div id="message"></div>
-
-  <div class="counter">
-    <div>
-      <strong>01</strong>
-      <span>IDENTITY</span>
-    </div>
-    <div>
-      <strong>∞</strong>
-      <span>POTENTIAL</span>
-    </div>
-    <div>
-      <strong>001</strong>
-      <span>ORIGINAL</span>
-    </div>
-  </div>
+<section class="panel">
+ <h3>〈 AĞ ETKİNLİĞİ 〉</h3>
+ <p>Görsel bağlantı durumu</p>
+ <p class="green">● Arayüz etkin</p>
+ <div class="bar"><span style="width:62%"></span></div>
+ <br>
+ <h3>〈 ÖRNEK VERİLER 〉</h3>
+ <p>22/tcp　 <span class="green">örnek</span></p>
+ <p>80/tcp　 <span class="green">örnek</span></p>
+ <p>443/tcp　<span class="green">örnek</span></p>
+ <p class="small">Bunlar gerçek tarama sonuçları değildir.</p>
+ <br>
+ <h3>〈 SİSTEM DURUMU 〉</h3>
+ <p>CPU <span class="green">██████░░</span></p>
+ <p>RAM <span class="green">█████░░░</span></p>
+ <p>BATARYA <span class="green">██████░░</span></p>
+ <br>
+ <h3 class="red">〈 GÜVENLİK NOTU 〉</h3>
+ <p>› Güçlü parolalar kullan.</p>
+ <p>› Bilinmeyen bağlantılara dikkat et.</p>
+ <p>› Yalnızca izinli sistemlerde çalış.</p>
+</section>
 </main>
 
 <footer>
-  <span>©</span> 2026 DOIZY
-  <span>•</span> ALL RIGHTS RESERVED
+ <p>“Hayallerini kodla, gerçek olsun.”</p>
+ <p>— DOIZY © 2026</p>
 </footer>
 
 <script>
-const particles = document.getElementById("particles");
-
-for (let i = 0; i < 45; i++) {
-  const p = document.createElement("span");
-  p.className = "particle";
-  p.style.left = Math.random() * 100 + "%";
-  p.style.animationDuration = (5 + Math.random() * 10) + "s";
-  p.style.animationDelay = (Math.random() * 10) + "s";
-  p.style.transform = "scale(" + (0.5 + Math.random()) + ")";
-  particles.appendChild(p);
+const matrix=document.getElementById("matrix");
+for(let i=0;i<24;i++){
+ const s=document.createElement("span");
+ s.textContent=Array.from({length:22},()=>Math.random()>.5?"1":"0").join("\n");
+ s.style.animationDuration=(2+Math.random()*4)+"s";
+ matrix.appendChild(s);
 }
+function updateClock(){
+ document.getElementById("clock").textContent=
+ new Date().toLocaleTimeString("tr-TR");
+}
+updateClock();
+setInterval(updateClock,1000);
 
-const button = document.getElementById("enterButton");
-const message = document.getElementById("message");
-
-button.addEventListener("click", () => {
-  message.textContent = "DOIZY — YOU ARE IN THE RIGHT PLACE.";
-  button.style.background = "#ff003c";
-  setTimeout(() => {
-    button.style.background = "transparent";
-  }, 350);
+document.getElementById("scan").addEventListener("click",()=>{
+ document.getElementById("result").textContent=
+ "✓ DOIZY SİSTEMİ HAZIR — DEMO TAMAMLANDI";
+ const logs=document.getElementById("logs");
+ const p=document.createElement("p");
+ p.textContent="[OK] Görsel demo kullanıcı tarafından başlatıldı";
+ logs.appendChild(p);
+ logs.scrollTop=logs.scrollHeight;
 });
 </script>
-
 </body>
 </html>
